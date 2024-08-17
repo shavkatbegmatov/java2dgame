@@ -14,7 +14,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int screenHeight = tileSize * maxScreenRow; // 576 pixels
 
     // FPS
-    int FPS = 180;
+    int FPS = 600;
 
     KeyHandler keyHandler = new KeyHandler();
     Thread gameThread;
@@ -22,7 +22,10 @@ public class GamePanel extends JPanel implements Runnable {
     // Set player's default position
     int playerX = 100;
     int playerY = 100;
-    int playerSpeed = 3;
+    int playerSpeed = 1;
+
+    // Создаем объект муравья
+    Ant myAnt = new Ant();
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -59,7 +62,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        // Update
+        // Обновление позиции игрока
         if (keyHandler.upPressed == true) {
             playerY -= playerSpeed;
         }
@@ -72,13 +75,22 @@ public class GamePanel extends JPanel implements Runnable {
         if (keyHandler.rightPressed == true) {
             playerX += playerSpeed;
         }
+
+        // Обновляем муравья
+        myAnt.update();
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
+
+        // Отрисовываем игрока (белый прямоугольник)
         g2.setColor(Color.white);
         g2.fillRect(playerX, playerY, tileSize, tileSize);
+
+        // Отрисовываем муравья
+        myAnt.draw(g2);
+
         g2.dispose();
     }
 }
