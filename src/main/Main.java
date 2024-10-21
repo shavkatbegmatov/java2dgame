@@ -5,6 +5,9 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
 
+        Dog dog = new Dog();
+        dog.age = 25;
+
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
@@ -19,6 +22,16 @@ public class Main {
         window.setVisible(true);
 
         gamePanel.startGameThread();
+
+        {
+            int AA = 16;
+            {
+                int AA = 20;
+                System.out.println(AA);
+            }
+        }
+
+        // System.out.println(AA);
 
     }
 }
